@@ -1,0 +1,14 @@
+{
+	'xms': [
+		{
+			'xms_ip': 'ip_address_1',
+			'user': 'username',
+			'password': 'password'
+		},
+		{
+			'xms_ip': 'ip_address_2',
+			'user': 'username',
+			'password': 'password'
+		}
+	]
+}

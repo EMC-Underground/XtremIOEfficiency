@@ -32,7 +32,7 @@ config['xms'].each do |xms|
 		logical_space = ''
 		cluster_details = rest_get(cluster['href'], auth)
 		physical_space = cluster_details['content']['ud-ssd-space-in-use']
-		volume_list = rest_get("https://#{xms_ip}/api/json/v2/types/volumes", auth)
+		volume_list = rest_get("https://#{xms['xms_ip']}/api/json/v2/types/volumes", auth)
 		volume_list['volumes'].each do |volume|
 			logical_space += volume['content']['logical-space-in-use'] if volume['content']['sys-id'] == [cluster_details['content']['sys-id']
 		end

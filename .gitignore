@@ -9,6 +9,7 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
+settings.json
 
 ## Specific to RubyMotion:
 .dat*
