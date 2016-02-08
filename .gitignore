@@ -10,6 +10,7 @@
 /test/version_tmp/
 /tmp/
 settings.json
+*.swp
 
 ## Specific to RubyMotion:
 .dat*
