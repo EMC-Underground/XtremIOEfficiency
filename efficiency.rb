@@ -33,12 +33,14 @@ config['xms'].each do |xms|
 		logical_space = 0
 		physical_space = 0
 		cluster_details = rest_get(cluster['href'], auth)
-		physical_space = cluster_details['content']['ud-ssd-space-in-use'].to_i
+		physical_space = cluster_details['content']['ud-ssd-space-in-use'].to_f
 		volume_list = rest_get("https://#{xms['xms_ip']}/api/json/v2/types/volumes", auth)
 		volume_list['volumes'].each do |volume|
 			volume_details = rest_get(volume['href'], auth)
-			logical_space += volume_details['content']['logical-space-in-use'].to_i if volume_details['content']['sys-id'] == cluster_details['content']['sys-id']
+			logical_space += volume_details['content']['logical-space-in-use'].to_f if volume_details['content']['sys-id'] == cluster_details['content']['sys-id']
 		end
-		puts "#{cluster_details['content']['sys-id'][1]} Data Reducation Rate: #{logical_space/physical_space} to 1"
+		puts "#{cluster_details['content']['sys-id'][1]} Logical Space Provisioned: #{(logical_space.to_f/1024/1024/1024).round(2)}"
+		puts "#{cluster_details['content']['sys-id'][1]} Physical Space in Use: #{(physical_space.to_f/1024/1024/1024).round(2)}"
+		puts "#{cluster_details['content']['sys-id'][1]} Data Reducation Rate: #{(logical_space/physical_space).round(2)} to 1"
 	end
 end
